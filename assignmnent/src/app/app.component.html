@@ -1,0 +1,38 @@
+<div class="contact">
+  <div *ngIf="allContacts && showAllContact">
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>FirstName</th>
+        <th>lastName</th>
+        <th>PhoneNumber</th>
+      </tr>
+      <tr *ngFor="let contact of allContacts">
+        <td>{{contact.id}}</td>
+        <td>{{contact.firstName}}</td>
+        <td>{{contact.lastName}}</td>
+        <td>{{contact.phone}}</td>
+        <td><button class="delete" (click)="deleteContact(contact.id)">Delete</button></td>
+        <td><button class="update" (click)="updateContact(contact.id)">Update</button></td>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <button *ngIf="allContacts" (click) ="isAddContact()"> Add Contact </button>
+  
+  </div>
+  <div class="error-box" *ngIf="error">
+    {{errorMessage}}
+    </div>
+  <form *ngIf="isContact" [formGroup] ="contactForm">
+    <label for="id" name="id">ID</label>
+    <input type="number" id="id" formControlName="id"/><br/>
+    <label for="fName" name="fName">FirstName</label>
+    <input type="text" id="fName" formControlName="firstName"/><br/>
+    <label for="lName" name="lName">LastName</label>
+    <input type="text" id="lName" formControlName="lastName"/><br/>
+    <label for="phoneNumber" name="phoneNumber">PhoneNumber</label>
+    <input type="tel" id="phoneNumber" formControlName = "phoneNumber"/><br/>
+    <button (click)="addContact()">Save</button>
+  </form>
+  
